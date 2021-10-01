@@ -1,0 +1,260 @@
+<html>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+
+body {
+  background-image: linear-gradient(90deg, #2cdeeb ,#4092da);
+  color: white;
+}
+
+#course-row {
+  font-size: 20px;
+  font-weight: bolder; 
+  margin-left: -2%;
+  padding-right:53px;
+}
+
+#credit-row {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 13%;
+}
+
+#grade-row {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 8%;
+}
+
+.calculator-box {
+    background-color: #4f5c63;
+  width: 50%;
+  height: auto;
+  border: 2px solid #3D515C;
+  margin: 100px auto;
+}
+
+
+h1 {
+  padding: 15px;
+  font-size: 40px;
+  text-align: center;
+  border: 1px solid #3D515C;
+  background-color: #3D515C;
+}
+p{
+  padding: 20px;
+  font-size: 1rem;
+  color: rgb(155, 221, 212);
+  text-align: center;
+}
+ 
+#course-wrapper, form {
+  color: rgb(159, 231, 225);
+  padding-left: 5px;
+  margin: 0 auto;
+  text-align: center;
+}
+input{
+  border: none;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 20%;
+  text-align: center;
+}
+select{
+  padding: 15px;
+  border: none;
+  border-radius: 7.5px;
+  width: 20%;
+}
+ button {
+  width: 15%;
+  height: 40px;
+  padding: 1px;
+  margin: 5px auto;
+  border-width: 3px;
+  border-radius: 10%;
+  border-style: solid;
+  background-color:lightcoral;
+}
+
+ button:hover {
+  width: 15%;
+  height: 40px;
+  padding: 1px;
+  margin: 5px auto;
+  border-width: 3px;
+  border-radius: 10%;
+  border-style: solid;
+  color: #fff;
+  background: #000;
+  border-color: #000;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+.lastp {
+  border: 1px solid #3D515C;
+  background-color: #3D515C;
+}
+.lastp p {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bolder;
+} 
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  margin-top:1px;
+  height:80px;
+  padding-top:19px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 21px;
+}
+.topnav a:hover{
+  color:beige;
+}
+.label {
+        display: inline-block;
+        width: 160px;
+    }
+
+    </style>
+    <body>
+        <div class="topnav" style="padding-left:331px;">
+            <a href="index.html" >CGPA Calculator</a>
+            <a href="calculator.html" style="padding-left:198px;">Calculator</a>
+            <a href="#" style="padding-left:288px;">Bill Calculation</a>
+          </div> 
+        <div class="calculator-box">
+            <h1>BILL CALCULATION</h1>
+    
+            <div id="course-wrapper">
+              <form class="key-0">
+                <p> <label id="course-row" for="courses">Tarrif check</label>
+                <span>
+                 <select name="course" id="course" class="label" required>
+                    <option value="">Select the Tariff</option>
+                    <option value="">Domestic</option>
+                    <option value="">Commercial</option>
+                    </select></span></p>
+    <!--               <label for="credit-units">Credit Units:</label> -->
+                <p><label id="course-row" for="credit-units">Billing cycle</label>
+                <select name="course" id="course2" class="label" required>
+                    <option value="">By Monthly</option>
+                    
+                    <option value="">Monthly</option>
+                    
+                </select></p>
+
+                <p><label id="course-row"style="padding-right:10px; ">Consumed Units</label>
+                <input type="" class="label" id="get2" placeholder=""></p>
+                </form>
+            </div>
+            <!-- <section class"btn">+ Add Course</section> -->
+            <div class="btn">
+              <button onclick="calculate()">Calculate</button>
+            </div>
+            <div class="lastp">
+              <p id="cgpa-calc">Your Bill is: <span id="w"></span></p>
+            </div>
+          </div>
+    </body>
+    <script>
+         function calculate()
+    {   
+      var units = parseInt(document.getElementById("get2").value);
+      console.log(units);
+      var o=0;
+      var s=document.getElementById("course");
+      var t=s.options[s.selectedIndex];
+      console.log(o, s, t, t.text);
+      if(t.text=="Commercial"){
+      
+        if (units <= 100)
+        {
+           o= units * 10;
+        }
+        else if (units <= 200)
+        {
+            o= (100 * 10)
+                + (units - 100)
+                      * 15;
+        }
+        else if (units <= 300)
+        {
+            o= (100 * 10)
+                + (100 * 15)
+                + (units - 200)
+                      * 20;
+        }
+        else if (units > 300)
+        {
+            o= (100 * 10)
+                + (100 * 15)
+                + (100 * 20)
+                + (units - 300)
+                      * 25;
+        }
+        document.getElementById("w").innerHTML=o;
+    }
+    else if (t.text=="Domestic") {
+      if(document.getElementById("course2").selectedIndex!=0)
+      {
+      alert("Domestic calculations happens bi-monthly");
+      document.getElementById("course2").selectedIndex=0;
+      }
+      if (units <= 100)
+        {
+           o= units * 0;
+        }
+        else if (units <= 200)
+        {
+            o= (100 * 0)
+                + (units - 100)
+                      * 1.5;
+        }
+        else if (units <= 300)
+        {
+            o= (100 * 0)
+                + (100 * 1.5)
+                + (units - 200)
+                      * 2.0;
+        }
+        else if (units > 300)
+        {
+            o= (100 * 0)
+                + (100 * 1.5)
+                + (100 * 2.0)
+                + (units - 300)
+                      * 2.5;
+        }
+        document.getElementById("w").innerHTML=o;
+    } else {
+      document.getElementById("w").innerHTML="nothing selected";
+    }
+  }
+    </script>
+</html>
